@@ -57,26 +57,14 @@ let vowelBonusScore = function (word) {
   return points;
 };
 //console.log(vowel("come"));
-// let scrabbleScore = function(word){
-//   word=word.toLowerCase();
-//   let score = 0;
-//   for (let i = 0; i<word.length; i++){
-//     score += newPointStructure[word[i]]
-//   }
-// 	return score;
-// };
-//let newPointStructure = transform(oldPointStructure) ;
 let scrabbleScore = function(word){
+  // word=word.toLowerCase();
    let score = 0;
-  for(let i=0; i < word.length; i++){
-    for(const key in newPointStructure){
-      if (key.toLowerCase()===word[i].toLowerCase()){
-    score += newPointStructure[key];
-      }
-    }
-  }
-  return score;
-}
+   for (let i = 0; i< word.length; i++){
+     score += newPointStructure[word[i]]
+   }
+ 	return score;
+ };
 
 const scoringAlgorithms = [
   {
@@ -97,7 +85,6 @@ const scoringAlgorithms = [
 ];
 //console.log("algorithm name: ", scoringAlgorithms[0].name);
 //console.log("scorerFunction result: ", scoringAlgorithms[0].scoringFunction("JavaScript"));
-let newPointStructure = transform(oldPointStructure) ;
 
 function scorerPrompt() {
   userInput = input.question("Enter a word to score: ");
@@ -116,35 +103,28 @@ function scorerPrompt() {
   }
 }
 
-// function transform(oldPoint) {
-//   let newPoint={};
-//   for (score in oldPointStructure) {
-//     let val = oldPointStructure[score];
-//      for (let i=0;i<val.length;i++)
-//       val1=val[i].toLowerCase();
-//       console.log(val1);
-//     newPoint[val1]=Number(score);}
-//   return ;
-// }
-function transform(oldPointStructure){
- let newPoint={};
-  for(score in oldPointStructure){
-    let array = oldPointStructure[score];
-    for(let i=0;i<array.length;i++){
-      newPoint[array[i]]=Number(score);
+
+function transform(oldStructure){
+ const newPoint={};
+  for(let score in oldStructure){
+    let array = oldStructure[score];
+    for(let i = 0;i<array.length;i++){
+      val1=array[i].toLowerCase();
+      //console.log(val1);
+      newPoint[val1]= Number(score);
     }
     }
     return newPoint;
 }
-  
 
-// let newPointStructure = transform(oldPointStructure) ;
 
+let newPointStructure = transform(oldPointStructure) ;
+console.log(newPointStructure);
 function runProgram() {
-  //initialPrompt();
+  //let word =initialPrompt();
   scorerPrompt();
-  //newPointStructure();
   scrabbleScore();
+  
 }
 
 // Don't write any code below this line //
